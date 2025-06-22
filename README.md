@@ -1,54 +1,126 @@
-# React + TypeScript + Vite
+# 📘 Smart Legal Document Analyzer (SLDA)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Automate contract review, clause classification, risk detection, and summarization using Java, AI, and React.**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📁 Project Structure
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+📁 SmartLegalDocumentAnalyzer/
+├── backend/
+│   ├── slda-api/                         # Spring Boot app
+│   │   ├── src/main/java/com/slda/
+│   │   │   ├── controller/
+│   │   │   ├── service/
+│   │   │   ├── model/
+│   │   │   ├── repository/
+│   │   │   └── config/                  # JWT, CORS, etc.
+│   │   ├── src/main/resources/
+│   │   │   ├── application.properties
+│   │   └── pom.xml
+│   └── Dockerfile
+│
+├── ai-services/                         # Python AI layer
+│   ├── clause_classifier/
+│   ├── risk_detector/
+│   ├── summarizer/
+│   ├── similarity_checker/
+│   ├── ocr_service/
+│   └── shared_utils/                    # common preprocessing/tokenizers
+│
+├── frontend/                            # React app
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.js
+│   └── package.json
+│
+├── db/
+│   ├── postgres-init.sql
+│   └── mongo-init.js
+│
+├── docs/
+│   ├── README.md
+│   └── architecture.md
+│
+├── docker-compose.yml                   # Full dev stack
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💼 Business Use Case
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Legal teams often spend hours reading through legal documents such as NDAs, SLAs, and contracts. SLDA helps automate:
+
+- 🔍 Risky clause detection
+- 📑 Clause classification (e.g., Termination, Confidentiality)
+- 🧠 Similarity comparison with previous contracts
+- ✂️ Summarized versions for non-legal teams
+
+> Saves time, reduces risk, and accelerates business decisions.
+
+---
+
+## 🧠 AI-Powered Features
+
+| Feature               | AI/ML Technique                          | Tech Stack                       |
+|----------------------|------------------------------------------|----------------------------------|
+| Clause Classification| LegalBERT + Text Classification          | HuggingFace + FastAPI + Spring Boot |
+| Risk Detection       | Fine-tuned BERT with rule-based logic    | Flask + Spring Boot              |
+| Legal Summarizer     | LLM (GPT or LLaMA) + fine-tuning         | OpenAI API / HuggingFace         |
+| Similarity Checker   | Sentence Embeddings + Cosine Similarity  | SentenceTransformers + Faiss     |
+| OCR for PDFs         | Text extraction from scanned docs        | Tesseract + pytesseract + bridge |
+| Dashboard & Upload   | UI for upload, monitoring & insights     | Spring Boot + React              |
+
+---
+
+## 🏗️ Architecture
+
+- **Frontend**: React
+- **Backend**: Spring Boot (Java)
+- **AI Services**: Flask/FastAPI microservices (Python)
+- **Databases**: PostgreSQL (structured data), MongoDB (AI metadata)
+- **OCR**: Tesseract for scanned document support
+- **Authentication**: JWT + Role-based access
+
+---
+
+## 📊 Advanced Features (Coming Soon)
+
+- Chatbot for querying clauses: “What is the liability clause in NDA #2?”
+- Fine-tuned LLMs for better legal summarization
+- Audit trail with clause edits & approvals
+- Exportable annotated PDFs
+- Clause-level analytics dashboard
+
+---
+
+## 🧪 Getting Started (Local Dev)
+
+### Prerequisites:
+- Java 17+
+- Python 3.9+
+- Node.js 18+
+- Docker & Docker Compose
+
+### Commands:
+```bash
+# Start everything (Spring Boot, React, AI services)
+docker-compose up --build
 ```
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. Please create issues for major features.
+
+---
+
+## 📝 License
+
+This project is licensed to be under the MIT License.
