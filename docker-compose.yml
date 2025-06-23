@@ -12,7 +12,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/slda
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-      JWT_SECRET: 123456789
+      JWT_SECRET: 12345678
     networks:
       - slda-net
 
